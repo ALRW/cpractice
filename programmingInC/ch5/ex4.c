@@ -19,29 +19,39 @@ int main(void){
                                 printf("= %.3f\n",(float)a);
                                 break;
                         case '/':
+                                if(n == 0){
+                                        run = false;
+                                        printf("Error: dividing by %d\n", n);
+                                        break;
+                                } else {
                                 a /= n;
-                                printf("Divide by %i",n);
+                                printf("Divide by %i\n",n);
                                 printf("= %.3f\n",(float)a);
                                 break;
-                        case '-':
+                                }
+                       case '-':
                                 a -= n;
-                                printf("Subtract %i",n);
+                                printf("Subtract %i\n",n);
                                 printf("= %.3f\n",(float)a);
                                 break;
                         case '*':
                                 a *= n;
-                                printf("Multiply by %i",n);
+                                printf("Multiply by %i\n",n);
                                 printf("= %.3f\n",(float)a);
                                 break;
                         case '+':
                                 a += n;
-                                printf("Add %i",n);
+                                printf("Add %i\n",n);
                                 printf("= %.3f\n",(float)a);
                                 break;
                         case 'E':
                                 run = false;
                                 printf("End of Program\n");
                                 printf("= %.3f\n",(float)a);
+                                break;
+                        default:
+                                run = false;
+                                printf("Error: unrecognised operator\n");
                                 break;
                 }
         }
