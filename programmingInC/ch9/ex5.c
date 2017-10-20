@@ -53,7 +53,7 @@ int findString(const char input[], const char searchTerm[])
 
         for(i = 0, j = 0; i < length; ++i)
         {
-                if(input[i] == input[j])
+                if(input[i] == searchTerm[j])
                 {
                         substring(input, i, searchLength, matchArray);
                         if(compareStrings(matchArray, searchTerm))
