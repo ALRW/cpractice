@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 int stringLength(const char input[])
 {
@@ -8,37 +9,87 @@ int stringLength(const char input[])
 
         return c;
 }
+void substring(const char input[], int start, int length, char output[])
+{
+        int i;
+
+        for(i = 0;i < length; ++start, ++i)
+        {
+                if(input[start] == '\0')
+                        break;
+
+                output[i] = input[start];
+        }
+        output[i] = '\0';
+}
+
+bool compareStrings(const char s1[], const char s2[])
+{
+        int i = 0;
+        bool answer = false;
+
+        while(s1[1] == s2[i] && s1[i] != '\0')
+                ++i;
+
+        if(s1[i] < s2[i])
+                answer = false;
+        else if(s1[i] == s2[i])
+                answer = true;
+        else
+                answer = false;
+
+                return answer;
+}
+
+int findString(const char input[], const char searchTerm[])
+{
+        int stringLength(const char input[]), result = -1, i, j, length, searchLength;
+        void substring(const char input[], int start, int length, char output[]);
+        bool compareStrings(const char s1[], const char s2[]);
+        char matchArray[50];
+
+        length = stringLength(input);
+        searchLength = stringLength(searchTerm);
+
+        for(i = 0, j = 0; i < length; ++i)
+        {
+                if(input[i] == searchTerm[j])
+                {
+                        substring(input, i, searchLength, matchArray);
+                        if(compareStrings(matchArray, searchTerm))
+                        {
+                                result = i;
+                                break;
+                        }
+                }
+
+        }
+        return result;
+}
+
+void removeString(char source[], int pos, int len)
+{
+        int i;
+
+        for(i = pos + len; source[i] != '\0'; ++i, ++pos)
+                source[pos] = source[i];
+
+        source[pos] = '\0';
+}
 
 int main (void)
 {
-        void removeString(char input[], int pos, int len);
+        int findString(const char input[], const char searchTerm[]), result;
         char source[] = "The wrong son";
 
-        removeString(source, 4,6);
+        removeString(source, 4, 6);
 
-        printf("%s\n", source);
+        printf("%s\n\n", source);
+
+        result = findString("a chatterbox", "hat");
+
+        printf("%i\n", result);
 
         return 0;
 }
-
-void removeString(char input[], int pos, int len)
-{
-        int stringLength(const char input[]), length, i, j;
-        char result[100];
-
-        length = stringLength(input);
-        for(i = 0, j = 0; i < length; ++i)
-        {
-                if(i >= pos && i <= pos + len)
-                        continue;
-
-                result[j] = input[j];
-                ++j;
-        }
-
-        input = result;
-}
-
-
-
 
